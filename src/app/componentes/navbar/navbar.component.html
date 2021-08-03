@@ -16,6 +16,9 @@
                     <a class="nav-link" routerLink="/foro" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().username!=undefined">Foro</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" routerLink="/graficas" routerLinkActive="active">Gráficas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" routerLink="/doctorprincipal" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().rol=='ROL_DOCTOR'">Administrar</a>
                 </li>
                 <li class="nav-item">

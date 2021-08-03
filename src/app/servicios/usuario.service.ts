@@ -221,6 +221,10 @@ getEnfermedad(){
   }
   return this.enfermedad;
 }
+
+
+//************************************************************************* */
+
 editarCovid(covid: any): Observable<any>{
   let params = JSON.stringify(covid);
 
@@ -232,5 +236,4 @@ listarCovid(): Observable<any>{
   return this._http.get(this.url+"listarCovid", {headers: this.headersVariable});
 
 }
-
 }

@@ -32,10 +32,11 @@ charTypes =[
   }];
   chartLegend = true;
   chartPlugins = [];
-  constructor(private _enfermedadService: UsuarioService) { }
+  constructor(public _enfermedadService: UsuarioService) { }
 
   ngOnInit(): void {
-    this.listarCovid()
+    this.listarCovid();
+    this.ObtenerEnfermedades();
   }
 
   ObtenerEnfermedades(){
@@ -44,21 +45,21 @@ charTypes =[
         console.log(response)
         this.graficas = response.enfermedadEncontrada;
         this.graficas.forEach(datos =>{
-          this.chartLabels.push(datos.contagiados);
-          this.chartData.push(datos.recuperados);
+          this.chartLabels.push(datos.nombre);
+          this.chartData.push(datos._id);
           this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
         })
       }
     )
   }
+
   listarCovid(){
     this._enfermedadService.listarCovid().subscribe(
       response=>{
-        console.log(response)
         this.graficas2 = response.covid;
         this.graficas2.forEach(datos=>{
-          this.chartLabels.push(datos.nombre);
-          this.chartData.push(datos.contagiados);
+          this.chartLabels.push(datos);
+          this.chartData.push(datos);
           this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
         })
         this.covid=response.covid;
@@ -88,5 +89,3 @@ charTypes =[
     )
   }
 }
-
-
