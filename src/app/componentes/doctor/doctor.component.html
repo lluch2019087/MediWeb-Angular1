@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+    <br>
+    <button type="button" class="btn btn-primary" routerLink="/adminprincipal" routerLinkActive="active">Regresar</button>
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Doctores</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#addEmployeeModal" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"> <img src="assets/agregar-usuario.png" width="25px"> <span>Agregar Usuario</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+
+                        <th>id</th>
+                        <th>Nombre Doctor</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usua of usuariosLista">
+                        <th scope="row">{{usua._id}}</th>
+                        <td>{{usua.username}}</td>
+                        <td>{{usua.rol}}</td>
+
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href="#editEmployeeModal" class="edit" data-bs-toggle="modal" data-bs-target="#editEmployeeModal" (click)="obtenerDoctor(usua._id)"><img src="assets/lapiz.png" width="25px"></a>
+                                <a href="#deleteEmployeeModal" class="delete" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" (click)="obtenerDoctor(usua._id)"><img src="assets/basura.png" width="25px"></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Agregar Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Agregar Doctor</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label>Username</label>
+                            <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="username" name="username" #username="ngModel" [(ngModel)]="modeloUsuario.username">
+                        </div>
+                        <div class="mb-3">
+                            <label>Password</label>
+                            <input type="password" class="form-control" data-type="password" id="exampleInputPassword1" aria-describedby="password" name="password" #password="ngModel" [(ngModel)]="modeloUsuario.password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-success" (click)="registrarDoctor()" value="Agregar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editar Modal HTML -->
+    <div id="editEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Doctor</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label>Nombre del Doctor</label>
+                            <input type="text" class="form-control" id="inputUsername" name="username" #username="ngModel" [(ngModel)]="modeloUsuario.username">
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-success" data-bs-dismiss="modal" (click)="editarDoctor()" value="Guardar Cambio">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Doctor</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <h6>Se eliminara de forma definitiva al Doctor: {{modeloUsuario.username}}</h6>
+                        <p class="text-warning"><small>Esta acción no se puede deshacer.</small>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="eliminarDoctor(modeloUsuario._id)">Eliminar</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

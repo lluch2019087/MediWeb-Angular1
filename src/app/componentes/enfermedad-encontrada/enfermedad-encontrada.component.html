@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="main-layout">
+
+    <h1><b>Bienvenido</b></h1>
+    <p>A continuacion podras encontrar infromacion sobre la Enfermedad {{enfermedad.nombre}}</p>
+    <div class="banner-slider">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-7">
+                    <div id="slider_main" class="carousel slide" data-ride="carousel">
+                        <!-- The slideshow -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/dolor.jpg" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="full slider_cont_section">
+                        <h3>La enfermedad {{enfermedad.nombre}}</h3>
+                        <br>
+                        <h4> Los sintomas que provoca son: {{enfermedad.sintomas}}</h4>
+                        <br>
+                        <p>¿Qué es esta enfermedad? {{enfermedad.descripcion}}</p>
+
+                        <div class="button_section">
+                            <a routerLink="/foro" routerLinkActive="active">Foro</a>
+                            <a routerLink="/inicio" routerLinkActive="active">inicio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

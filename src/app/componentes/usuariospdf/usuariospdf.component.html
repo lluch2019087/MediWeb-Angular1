@@ -1,0 +1,31 @@
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div id="htmlData">
+                <h2>Lista de usuarios</h2>
+                <table class="table table-secondary table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usua of usuariosLista">
+                            <th scope="row">{{usua._id}}</th>
+                            <td>{{usua.username}}</td>
+                            <td>{{usua.rol}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn col col-lg-2 btn-danger btn-block ml-2" (click)="downloadPDF()">Generar PDF</button>
+    </div>
+    <br>
+</body>

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">MediWeb</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().username==undefined">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/inicio" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().username!=undefined">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/foro" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().username!=undefined">Foro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/doctorprincipal" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().rol=='ROL_DOCTOR'">Administrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/adminprincipal" routerLinkActive="active" *ngIf="this._usuarioService.getIdentidad().rol=='ROL_ADMIN'">Administrar</a>
+                </li>
+
+            </ul>
+
+
+            <br>
+            <div class="d-flex" *ngIf="_usuarioService.getIdentidad()">
+                <img *ngIf="_usuarioService.getIdentidad().imagen" [src]="this.url + 'obtenerArchivoImagen/' +_usuarioService.getIdentidad().imagen" class="user-image">
+                <img class="nav-link" routerLink="/cuenta" routerLinkActive="active" *ngIf="_usuarioService.getIdentidad().imagen == null && this._usuarioService.getIdentidad().username!=undefined" src="/assets/man.png" class="user-image">
+                <a class="nav-link" routerLink="/cuenta">{{ _usuarioService.getIdentidad().username}}</a>
+            </div>
+
+            <div><img class="nav-link" routerLink="/login" routerLinkActive="active" src="/assets/logout.png" class="user-image" *ngIf="this._usuarioService.getIdentidad().username!=undefined" (click)="cerrarSesion()"></div>
+        </div>
+    </div>
+</nav>

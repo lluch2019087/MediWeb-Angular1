@@ -1,0 +1,38 @@
+<body>
+    <br>
+    <button type="submit" type="reset" class="btn btn-primary" routerLink="/doctorprincipal" routerLinkActive="active">Regresar</button>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-5">
+                <form class="box">
+                    <!--<form (ngSubmit)="registrar()">-->
+                    <form>
+                        <div class="mb-3">
+                            <h1>Agregar Medicamento</h1>
+                            <img class="avatar" src="assets/medicamentoss.png">
+                            <div id="emailHelp" class="texto">Ingresa su Nombre</div>
+                            <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel" [(ngModel)]="modeloMedicamentos.nombre">
+                        </div>
+                        <div class="mb-3">
+                            <div id="emailHelp" class="texto">Ingresa Sus Instrucciones</div>
+                            <input type="text" class="form-control" id="inputPrecio" name="precio" #precio="ngModel" [(ngModel)]="modeloMedicamentos.instrucciones">
+                        </div>
+
+                        <div class="col-md-6">
+                            <div id="emailHelp" class="texto" style="margin-left:120px">Enfermedad</div>
+                            <select type="text" class="form-select" name="hotel" #hotel="ngModel" [(ngModel)]="modeloMedicamentos.enfermedad">
+                <option selected=""></option>
+                <option *ngFor="let medi of medicamento" value="{{medi._id}}">{{medi.nombre}}</option>
+                </select>
+                        </div>
+                        <br>
+                        <button type="reset" class="btn btn-primary" (click)="registrarMedicamento()">Agregar Medicamento</button>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

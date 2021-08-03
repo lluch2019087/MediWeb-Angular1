@@ -1,0 +1,29 @@
+<body>
+    <br>
+    <button type="submit" type="reset" class="btn btn-primary" routerLink="/enfermedades" routerLinkActive="active">Regresar</button>
+
+    <br>
+    <div class="container">
+        <br><br>
+        <h1>Bienveni@, aquí puedes visualizar los medicamentos recomendados por los doctores!!</h1>
+        <br><br>
+        <img class="avatar" src="assets/medicamentoss.png"><br>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">instrucciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medi of medicamentosEncontrado">
+                    <th scope="row">{{medi._id}}</th>
+                    <td>{{medi.nombre}}</td>
+                    <td>{{medi.instrucciones}}</td>
+            </tbody>
+
+        </table>
+    </div>
+</body>

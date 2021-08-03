@@ -1,0 +1,37 @@
+<button type="button" class="btn btn-primary" routerLink="/inicio" routerLinkActive="active">Regresar</button>
+
+<body>
+    <h1 class="lines-effect">Bienvenido a la biblioteca MediWeb</h1>
+
+    <div class="contenedor2">
+        <img class="em" src="assets/logofin.png" alt="">
+        <div class="textos">
+            <h2 class="titulo">¡MediWeb una herramienta para la sociedad!</h2>
+            <h3 class="subtitulo">En este espacio puedes encontrar toda la informacion que necesites</h3>
+            <h3 class="subtitulo">Padeces de alguna enfermedad y no sabes con exactitud que es, ni como combatirla?. Bienvenido a la biblioteca MediWeb, a continuacion <br>encontraras mucha informacion sobre todo tipo de enfermedades y esta esta verificada ya que es ingresada
+                por medicos capacitados. Disfruta <br>de esta aplicación ya que esta desarrollada para ti y sin nungun costo, sacale el mayor provecho y ya no sufras por mas enfermedades.</h3>
+        </div>
+    </div>
+
+    <header>
+        <br>
+        <h2 class="titulo"> Informacion sobre enfermedades</h2>
+        <br>
+        <div id="htmlData">
+            <div class="row">
+
+                <div class="col-xs-10 col-sm-4 mb-4" *ngFor="let enf of enfermedades">
+                    <div class="card-header">
+                        <b>Enfermedad: {{enf.nombre}}</b>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Descripcion: {{enf.descripcion}}</li>
+                        <li class="list-group-item">Síntomas: {{enf.sintomas}}</li>
+                        <li class="list-group-item">Autor: {{enf.doctor}}</li>
+                        <button routerLink="/listamedicamentos" routerLinkActive="active" class="btn btn-primary" (click)="buscarEnfermedad(enf.nombre)">Medicamento Recomendado</button>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
