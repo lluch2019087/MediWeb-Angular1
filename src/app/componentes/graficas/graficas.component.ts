@@ -12,7 +12,7 @@ export class GraficasComponent implements OnInit {
   public covid: any;
   public covidModel: any= {contagiados:'', muertos:'', casosDetectados:'', recuperados:''}
   public covid2: any;
-private graficas2: any;
+public graficas2: any;
   private graficas: any;
 
   chartInicial = 'pie';
@@ -35,43 +35,28 @@ charTypes =[
   constructor(public _enfermedadService: UsuarioService) { }
 
   ngOnInit(): void {
-    this.listarCovid();
-    this.ObtenerEnfermedades();
-  }
-
-  ObtenerEnfermedades(){
-    this._enfermedadService.obtenerEnfermedades().subscribe(
-      response => {
-        console.log(response)
-        this.graficas = response.enfermedadEncontrada;
-        this.graficas.forEach(datos =>{
-          this.chartLabels.push(datos.nombre);
-          this.chartData.push(datos._id);
-          this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
-        })
-      }
-    )
+  this.listarCovid();
   }
 
   listarCovid(){
     this._enfermedadService.listarCovid().subscribe(
       response=>{
+        console.log(response)
         this.graficas2 = response.covid;
         this.graficas2.forEach(datos=>{
-          this.chartLabels.push(datos);
-          this.chartData.push(datos);
+          this.chartLabels.push(datos.nombre);
+          this.chartData.push(datos.muertos, datos.recuperados, datos.contagiados, datos.casosDetectados);
           this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
         })
-        this.covid=response.covid;
-        console.log(response.covid);
-      },
-      error=>{
-        console.log(<any>error);
       }
 
     )
 
   }
+
+
+
+
 
   editarCovid(){
     this._enfermedadService.editarCovid(this.covidModel).subscribe(
