@@ -27,7 +27,7 @@ charTypes =[
   chartLabels = ["casosDetectados", "recuperados", "contagiados", "muertos"];
   chartData = [];
   chartColors = [{
-    backgroundColor: [],
+    backgroundColor: ['red', '#0F0', 'rgba(41, 182, 246,0.75)', "green"],
 
   }];
   chartLegend = true;
@@ -46,7 +46,7 @@ charTypes =[
         this.graficas2.forEach(datos=>{
           this.chartLabels.push();
           this.chartData.push(datos.casosDetectados, datos.recuperados, datos.contagiados, datos.muertos);
-          this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
+          //this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
         })
       }
 
