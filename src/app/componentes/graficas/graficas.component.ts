@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-graficas',
@@ -8,7 +9,10 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   providers: [UsuarioService]
 })
 export class GraficasComponent implements OnInit {
-
+  public covid: any;
+  public covidModel: any= {contagiados:'', muertos:'', casosDetectados:'', recuperados:''}
+  public covid2: any;
+private graficas2: any;
   private graficas: any;
 
   chartInicial = 'pie';
@@ -31,7 +35,7 @@ charTypes =[
   constructor(private _enfermedadService: UsuarioService) { }
 
   ngOnInit(): void {
-    this.ObtenerEnfermedades();
+    this.listarCovid()
   }
 
   ObtenerEnfermedades(){
@@ -40,11 +44,49 @@ charTypes =[
         console.log(response)
         this.graficas = response.enfermedadEncontrada;
         this.graficas.forEach(datos =>{
-          this.chartLabels.push(datos.nombre);
-          this.chartData.push(datos._id);
+          this.chartLabels.push(datos.contagiados);
+          this.chartData.push(datos.recuperados);
           this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
         })
       }
     )
   }
+  listarCovid(){
+    this._enfermedadService.listarCovid().subscribe(
+      response=>{
+        console.log(response)
+        this.graficas2 = response.covid;
+        this.graficas2.forEach(datos=>{
+          this.chartLabels.push(datos.nombre);
+          this.chartData.push(datos.contagiados);
+          this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
+        })
+        this.covid=response.covid;
+        console.log(response.covid);
+      },
+      error=>{
+        console.log(<any>error);
+      }
+
+    )
+
+  }
+
+  editarCovid(){
+    this._enfermedadService.editarCovid(this.covidModel).subscribe(
+      response=>{
+        this.covid2=response.covidActualizado;
+        console.log(response.covidActualizado);
+        this.listarCovid();
+        Swal.fire(
+          'Realizado!',
+          'Datos sobre el covid-19 actualizados'
+        )
+      }, error=>{
+        console.log(<any>error);
+      }
+    )
+  }
 }
+
+

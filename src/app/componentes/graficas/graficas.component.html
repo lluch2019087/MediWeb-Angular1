@@ -1,10 +1,35 @@
+<div class="mb-3">
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Contagiados</label>
+        <input class="form-control" id="exampleFormControlTextarea1" rows="3" name="contagiados" #contagiados="ngModel" [(ngModel)]="this.covidModel.contagiados">
+    </div>
+    <div class="mb-3">
+        <label for="1" class="form-label">Muertos</label>
+        <input class="form-control" id="1" rows="3" name="muertos" #muertos="ngModel" [(ngModel)]="this.covidModel.muertos">
+    </div>
+    <div class="mb-3">
+        <label for="2" class="form-label">Casos dectectados</label>
+        <input class="form-control" id="2" rows="3" name="casosDetectados" #casosDetectados="ngModel" [(ngModel)]="this.covidModel.casosDetectados">
+    </div>
+    <div class="mb-3">
+        <label for="3" class="form-label">Recuperados</label>
+        <input class="form-control" id="3" rows="3" name="recuperados" #recuperados="ngModel" [(ngModel)]="this.covidModel.recuperados">
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-success" type="button" (click)="editarCovid()">Editar Datos sobre el covid-19</button>
+    </div>
+</div>
+
+
+
 <select [(ngModel)]="chartInicial">
-  <option *ngFor="let tipo of charTypes" [value]="tipo.nombreTipo">{{ tipo.texto }}</option>
+<option *ngFor="let tipo of charTypes" [value]="tipo.nombreTipo">{{ tipo.texto }}</option>
 </select>
 
 
 
 <div style="display: block;">
     <canvas baseChart [chartType]="chartInicial" [data]="chartData" [colors]="chartColors" [labels]="chartLabels" [options]="chartOptions" [plugins]="chartPlugins" [legend]="chartLegend">
-  </canvas>
+</canvas>
 </div>
