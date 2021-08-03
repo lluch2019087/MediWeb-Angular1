@@ -27,7 +27,8 @@
   <option *ngFor="let tipo of charTypes" [value]="tipo.nombreTipo">{{ tipo.texto }}</option>
 </select>
 
-
+<h1>
+    Grafica Covid</h1>
 
 <div style="display: block;">
     <canvas baseChart [chartType]="chartInicial" [data]="chartData" [colors]="chartColors" [labels]="chartLabels" [options]="chartOptions" [plugins]="chartPlugins" [legend]="chartLegend">

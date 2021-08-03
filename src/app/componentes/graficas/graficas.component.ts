@@ -24,7 +24,7 @@ charTypes =[
   chartOptions = {
     responsive: true,
   };
-  chartLabels = [];
+  chartLabels = ["casosDetectados", "recuperados", "contagiados", "muertos"];
   chartData = [];
   chartColors = [{
     backgroundColor: [],
@@ -44,8 +44,8 @@ charTypes =[
         console.log(response)
         this.graficas2 = response.covid;
         this.graficas2.forEach(datos=>{
-          this.chartLabels.push(datos.nombre);
-          this.chartData.push(datos.muertos, datos.recuperados, datos.contagiados, datos.casosDetectados);
+          this.chartLabels.push();
+          this.chartData.push(datos.casosDetectados, datos.recuperados, datos.contagiados, datos.muertos);
           this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
         })
       }
@@ -53,10 +53,6 @@ charTypes =[
     )
 
   }
-
-
-
-
 
   editarCovid(){
     this._enfermedadService.editarCovid(this.covidModel).subscribe(
